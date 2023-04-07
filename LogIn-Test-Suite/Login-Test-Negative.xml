@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:testCase id="024f6674-e4ba-42d3-a58a-b7487290af83" discardOkResults="false" failOnError="false" failTestCaseOnErrors="true" keepSession="false" name="Login Test Negative" searchProperties="true" timeout="0" xmlns:con="http://eviware.com/soapui/config">
+  <con:settings>
+    <con:setting id="IncludeOverview">true</con:setting>
+    <con:setting id="IncludeResults">true</con:setting>
+    <con:setting id="FlowLayout">false</con:setting>
+    <con:setting id="ErrorDetails">true</con:setting>
+    <con:setting id="IncludeCoverage">true</con:setting>
+    <con:setting id="024f6674-e4ba-42d3-a58a-b7487290af83fileName">Login-Test-Negative</con:setting>
+  </con:settings>
+  <con:testStep type="datasource" name="Data Source" id="71aff837-d4f3-4611-ad33-c33af0e63669">
+    <con:settings/>
+    <con:config xsi:type="con:DataSourceStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+      <con:dataSource type="Data Generator">
+        <con:configuration>
+          <generatedDataCount>10</generatedDataCount>
+          <generatorsTotalNumber>3</generatorsTotalNumber>
+          <lastSelectedProperty>2</lastSelectedProperty>
+          <GeneratorType0>STR</GeneratorType0>
+          <PropertyName0>Password value</PropertyName0>
+          <repetitionCountPasswordafe61299cceb409497fdd353a768dbc1value>0</repetitionCountPasswordafe61299cceb409497fdd353a768dbc1value>
+          <repeatValuesPasswordafe61299cceb409497fdd353a768dbc1value>false</repeatValuesPasswordafe61299cceb409497fdd353a768dbc1value>
+          <PasswordDataGeneratorUseSpacesPasswordafe61299cceb409497fdd353a768dbc1value>false</PasswordDataGeneratorUseSpacesPasswordafe61299cceb409497fdd353a768dbc1value>
+          <PasswordDataGeneratorUsePunctuationMarksPasswordafe61299cceb409497fdd353a768dbc1value>true</PasswordDataGeneratorUsePunctuationMarksPasswordafe61299cceb409497fdd353a768dbc1value>
+          <PasswordDataGeneratorUseLettersPasswordafe61299cceb409497fdd353a768dbc1value>true</PasswordDataGeneratorUseLettersPasswordafe61299cceb409497fdd353a768dbc1value>
+          <PasswordDataGeneratorUseDigitsPasswordafe61299cceb409497fdd353a768dbc1value>true</PasswordDataGeneratorUseDigitsPasswordafe61299cceb409497fdd353a768dbc1value>
+          <PasswordDataGeneratorMaxCharacterCountPasswordafe61299cceb409497fdd353a768dbc1value>10</PasswordDataGeneratorMaxCharacterCountPasswordafe61299cceb409497fdd353a768dbc1value>
+          <PasswordDataGeneratorMinCharacterCountPasswordafe61299cceb409497fdd353a768dbc1value>9</PasswordDataGeneratorMinCharacterCountPasswordafe61299cceb409497fdd353a768dbc1value>
+          <GeneratorType1>EMAIL</GeneratorType1>
+          <PropertyName1>Email value</PropertyName1>
+          <repetitionCountEmailafe61299cceb409497fdd353a768dbc1value>0</repetitionCountEmailafe61299cceb409497fdd353a768dbc1value>
+          <repeatValuesEmailafe61299cceb409497fdd353a768dbc1value>false</repeatValuesEmailafe61299cceb409497fdd353a768dbc1value>
+          <GeneratorType2>CUSTOM</GeneratorType2>
+          <PropertyName2>CorrectPassword</PropertyName2>
+          <repetitionCountCorrectPassword>0</repetitionCountCorrectPassword>
+          <repeatValuesCorrectPassword>false</repeatValuesCorrectPassword>
+          <CustomStringDataGeneratorFormatCorrectPassword>Abc@12345</CustomStringDataGeneratorFormatCorrectPassword>
+          <escapeSpaceSequence>afe61299cceb409497fdd353a768dbc1</escapeSpaceSequence>
+        </con:configuration>
+      </con:dataSource>
+      <con:shared>true</con:shared>
+      <con:restartShared>true</con:restartShared>
+      <con:property>Password value</con:property>
+      <con:property>Email value</con:property>
+      <con:property>CorrectPassword</con:property>
+      <con:restartOnRun>true</con:restartOnRun>
+      <con:stopDatasourceExhausted>false</con:stopDatasourceExhausted>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="restrequest" name="REST Request - wrong email" id="df2c336f-d0d8-4dd9-a3d6-77be9bd0a93a">
+    <con:settings/>
+    <con:config service="retail.api" resourcePath="/auth/login" methodName="Method 1" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+      <con:restRequest name="REST Request - wrong email" id="ae30632e-39a7-43f0-b45b-ccca06f75737" mediaType="application/json" postQueryString="false">
+        <con:settings>
+          <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+        </con:settings>
+        <con:request>{\r
+   "email" : "${Data Source#Email value}",\r
+   "password" : "${Data Source#CorrectPassword}"\r
+}</con:request>
+        <con:originalUri>https://tek-retail-ui.azurewebsites.net/auth/login</con:originalUri>
+        <con:assertion type="Valid HTTP Status Codes" id="a7fc28c4-3d7f-4c12-8d06-b16da2869972" name="Valid HTTP Status Codes">
+          <con:settings/>
+          <con:configuration>
+            <codes>400</codes>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="Response SLA Assertion" id="e76f56a7-fea4-40f9-9954-19ea3026072c" name="Response SLA">
+          <con:configuration>
+            <SLA>500</SLA>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="JsonPath Match" id="a56d571c-e045-46a8-868a-2db2bd9163d4" name="Match content of [code]">
+          <con:configuration>
+            <path>$['code']</path>
+            <content>400</content>
+            <allowWildcards>false</allowWildcards>
+            <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+            <ignoreComments>false</ignoreComments>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="JsonPath Match" id="e8fe82c9-86e7-4d61-977f-7c55b928a2af" name="Match content of [message]">
+          <con:configuration>
+            <path>$['message']</path>
+            <content>"wrong username or password"</content>
+            <allowWildcards>false</allowWildcards>
+            <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+            <ignoreComments>false</ignoreComments>
+          </con:configuration>
+        </con:assertion>
+        <con:credentials>
+          <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+          <con:authType>No Authorization</con:authType>
+        </con:credentials>
+        <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+        <con:parameters/>
+      </con:restRequest>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="restrequest" name="REST Request - empty body" id="fb37de56-2746-45a3-b6b3-a53d5979b5ed">
+    <con:settings/>
+    <con:config service="retail.api" resourcePath="/auth/login" methodName="Method 1" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+      <con:restRequest name="REST Request - empty body" id="ae30632e-39a7-43f0-b45b-ccca06f75737" mediaType="application/json" postQueryString="false">
+        <con:settings>
+          <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+        </con:settings>
+        <con:request>{\r
+   "email" : "",\r
+   "password" : ""\r
+}</con:request>
+        <con:originalUri>https://tek-retail-ui.azurewebsites.net/auth/login</con:originalUri>
+        <con:assertion type="Response SLA Assertion" id="e76f56a7-fea4-40f9-9954-19ea3026072c" name="Response SLA">
+          <con:configuration>
+            <SLA>500</SLA>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="JsonPath Match" id="f31a9d64-b8a5-42a7-8e9a-699fddbfb1be" name="Match content of [0]">
+          <con:configuration>
+            <path>$['errors']['body']['email'][0]</path>
+            <content>"Email is a required field"</content>
+            <allowWildcards>false</allowWildcards>
+            <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+            <ignoreComments>false</ignoreComments>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="JsonPath Match" id="ebd47056-2fc7-47f6-b3a2-c7ea9efdfe43" name="Match content of [0]">
+          <con:configuration>
+            <path>$['errors']['body']['password'][0]</path>
+            <content>"Password is a required field"</content>
+            <allowWildcards>false</allowWildcards>
+            <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+            <ignoreComments>false</ignoreComments>
+          </con:configuration>
+        </con:assertion>
+        <con:credentials>
+          <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+          <con:authType>No Authorization</con:authType>
+        </con:credentials>
+        <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+        <con:parameters/>
+      </con:restRequest>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="restrequest" name="REST Request - wrong password" id="fb832317-cd29-4fd8-b090-c45e9fc2e5b5">
+    <con:settings/>
+    <con:config service="retail.api" resourcePath="/auth/login" methodName="Method 1" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+      <con:restRequest name="REST Request - wrong password" id="ae30632e-39a7-43f0-b45b-ccca06f75737" mediaType="application/json" postQueryString="false">
+        <con:settings>
+          <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+        </con:settings>
+        <con:request>{\r
+   "email" : "frezer@hot.com",\r
+   "password" : "${Data Source#Password value}"\r
+}</con:request>
+        <con:originalUri>https://tek-retail-ui.azurewebsites.net/auth/login</con:originalUri>
+        <con:assertion type="Response SLA Assertion" id="e76f56a7-fea4-40f9-9954-19ea3026072c" name="Response SLA">
+          <con:configuration>
+            <SLA>500</SLA>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="JsonPath Match" id="6be73c1f-610f-43a5-af3f-e6ddacf9c6a1" name="Match content of [code]">
+          <con:configuration>
+            <path>$['code']</path>
+            <content>400</content>
+            <allowWildcards>false</allowWildcards>
+            <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+            <ignoreComments>false</ignoreComments>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="JsonPath Match" id="06ee695c-8410-44d0-b62d-954772e574e6" name="Match content of [message]">
+          <con:configuration>
+            <path>$['message']</path>
+            <content>"wrong username or password"</content>
+            <allowWildcards>false</allowWildcards>
+            <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+            <ignoreComments>false</ignoreComments>
+          </con:configuration>
+        </con:assertion>
+        <con:credentials>
+          <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+          <con:authType>No Authorization</con:authType>
+        </con:credentials>
+        <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+        <con:parameters/>
+      </con:restRequest>
+    </con:config>
+  </con:testStep>
+  <con:properties/>
+  <con:reportParameters/>
+</con:testCase>

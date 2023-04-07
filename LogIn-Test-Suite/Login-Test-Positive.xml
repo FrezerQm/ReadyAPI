@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:testCase id="866955a7-8585-4b50-bfae-15f1b47ef4a0" discardOkResults="false" failOnError="false" failTestCaseOnErrors="true" keepSession="false" name="Login Test Positive" searchProperties="true" timeout="0" xmlns:con="http://eviware.com/soapui/config">
+  <con:settings>
+    <con:setting id="IncludeOverview">true</con:setting>
+    <con:setting id="IncludeResults">true</con:setting>
+    <con:setting id="FlowLayout">false</con:setting>
+    <con:setting id="ErrorDetails">true</con:setting>
+    <con:setting id="IncludeCoverage">true</con:setting>
+    <con:setting id="866955a7-8585-4b50-bfae-15f1b47ef4a0fileName">Login-Test-Positive</con:setting>
+  </con:settings>
+  <con:testStep type="restrequest" name="REST Request" id="cdc9e6a0-364e-4fc0-bcf6-cf628eb39289">
+    <con:settings/>
+    <con:config service="retail.api" resourcePath="/auth/login" methodName="Method 1" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+      <con:restRequest name="REST Request" id="ae30632e-39a7-43f0-b45b-ccca06f75737" mediaType="application/json" postQueryString="false">
+        <con:settings>
+          <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting>
+        </con:settings>
+        <con:request>{\r
+   "email" : "frezer@hot.com",\r
+   "password" : "Abc@12345"\r
+}</con:request>
+        <con:originalUri>https://tek-retail-ui.azurewebsites.net/auth/login</con:originalUri>
+        <con:assertion type="Valid HTTP Status Codes" id="a7fc28c4-3d7f-4c12-8d06-b16da2869972" name="Valid HTTP Status Codes">
+          <con:settings/>
+          <con:configuration>
+            <codes>200</codes>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="Response SLA Assertion" id="e76f56a7-fea4-40f9-9954-19ea3026072c" name="Response SLA">
+          <con:configuration>
+            <SLA>500</SLA>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="JsonPath Existence Match" id="2f83c994-f733-4b26-bcae-a0971006e425" name="Check for existence of [accessToken]">
+          <con:configuration>
+            <path>$['accessToken']</path>
+            <content>true</content>
+            <allowWildcards>false</allowWildcards>
+            <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+            <ignoreComments>false</ignoreComments>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="JsonPath Match" id="32b91fb7-bacb-47d8-9b62-e67c82142a74" name="Match content of [phoneNumber]">
+          <con:configuration>
+            <path>$['phoneNumber']</path>
+            <content>"2023938398839"</content>
+            <allowWildcards>false</allowWildcards>
+            <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+            <ignoreComments>false</ignoreComments>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="JsonPath Match" id="094e8fa8-57f2-4b2f-9168-4866b4ebccca" name="Match content of [email]">
+          <con:configuration>
+            <path>$['email']</path>
+            <content>"frezer@hot.com"</content>
+            <allowWildcards>false</allowWildcards>
+            <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+            <ignoreComments>false</ignoreComments>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="JsonPath Match" id="2a6f85f3-96c2-4d5d-aff6-81f18f6c2c0d" name="Match content of [name]">
+          <con:configuration>
+            <path>$['name']</path>
+            <content>"Abc"</content>
+            <allowWildcards>false</allowWildcards>
+            <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+            <ignoreComments>false</ignoreComments>
+          </con:configuration>
+        </con:assertion>
+        <con:credentials>
+          <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+          <con:authType>No Authorization</con:authType>
+        </con:credentials>
+        <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+        <con:parameters/>
+      </con:restRequest>
+    </con:config>
+  </con:testStep>
+  <con:properties/>
+  <con:reportParameters/>
+</con:testCase>

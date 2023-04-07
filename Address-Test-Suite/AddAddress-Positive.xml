@@ -1,0 +1,413 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:testCase id="86ec3d9b-8b2e-42e5-b8e5-0bc0a24e495a" discardOkResults="false" failOnError="false" failTestCaseOnErrors="true" keepSession="false" name="AddAddress-Positive" searchProperties="true" timeout="0" xmlns:con="http://eviware.com/soapui/config">
+  <con:settings>
+    <con:setting id="86ec3d9b-8b2e-42e5-b8e5-0bc0a24e495afileName">AddAddress-Positive</con:setting>
+  </con:settings>
+  <con:testStep type="datasource" name="Data Source" id="3a6b9d77-9030-4ba5-a3aa-7ad319c0e803">
+    <con:settings/>
+    <con:config xsi:type="con:DataSourceStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+      <con:dataSource type="Data Generator">
+        <con:configuration>
+          <generatedDataCount>10</generatedDataCount>
+          <generatorsTotalNumber>8</generatorsTotalNumber>
+          <lastSelectedProperty>7</lastSelectedProperty>
+          <GeneratorType0>CUSTOM</GeneratorType0>
+          <PropertyName0>CountryValue</PropertyName0>
+          <repetitionCountCountryValue>0</repetitionCountCountryValue>
+          <repeatValuesCountryValue>false</repeatValuesCountryValue>
+          <CustomStringDataGeneratorFormatCountryValue>United States</CustomStringDataGeneratorFormatCountryValue>
+          <GeneratorType1>NAME</GeneratorType1>
+          <PropertyName1>Full Name</PropertyName1>
+          <repetitionCountFull4b115cd7d2e1428b8662ab2cd9f62a10Name>0</repetitionCountFull4b115cd7d2e1428b8662ab2cd9f62a10Name>
+          <repeatValuesFull4b115cd7d2e1428b8662ab2cd9f62a10Name>false</repeatValuesFull4b115cd7d2e1428b8662ab2cd9f62a10Name>
+          <NameTypeName1>Full</NameTypeName1>
+          <NameGenderName1>Any</NameGenderName1>
+          <GeneratorType2>PHONE</GeneratorType2>
+          <PropertyName2>PhoneNumber</PropertyName2>
+          <repetitionCountPhoneNumber>0</repetitionCountPhoneNumber>
+          <repeatValuesPhoneNumber>false</repeatValuesPhoneNumber>
+          <PhoneTemplateTypePhoneNumber>XXX-XXX-XXXX</PhoneTemplateTypePhoneNumber>
+          <GeneratorType3>ADDRESS</GeneratorType3>
+          <PropertyName3>Address</PropertyName3>
+          <repetitionCountAddress>0</repetitionCountAddress>
+          <repeatValuesAddress>false</repeatValuesAddress>
+          <AddressDataGeneratorRestrictLength>true</AddressDataGeneratorRestrictLength>
+          <AddressDataGeneratorMaxLength>100</AddressDataGeneratorMaxLength>
+          <GeneratorType4>SET</GeneratorType4>
+          <PropertyName4>apt</PropertyName4>
+          <repetitionCountapt>0</repetitionCountapt>
+          <repeatValuesapt>false</repeatValuesapt>
+          <ValueFromSetIsSequenceValueapt>false</ValueFromSetIsSequenceValueapt>
+          <ValueFromSetStringsapt>100</ValueFromSetStringsapt>
+          <ValueFromSetStringsapt>200</ValueFromSetStringsapt>
+          <ValueFromSetStringsapt>400</ValueFromSetStringsapt>
+          <ValueFromSetStringsapt>300</ValueFromSetStringsapt>
+          <GeneratorType5>CITY</GeneratorType5>
+          <PropertyName5>City</PropertyName5>
+          <repetitionCountCity>0</repetitionCountCity>
+          <repeatValuesCity>false</repeatValuesCity>
+          <GeneratorType6>STATE</GeneratorType6>
+          <PropertyName6>State</PropertyName6>
+          <repetitionCountState>0</repetitionCountState>
+          <repeatValuesState>false</repeatValuesState>
+          <StatesCountryState>United States</StatesCountryState>
+          <StatesFormatState>Full</StatesFormatState>
+          <GeneratorType7>USZIP</GeneratorType7>
+          <PropertyName7>Zipcode</PropertyName7>
+          <repetitionCountZipcode>0</repetitionCountZipcode>
+          <repeatValuesZipcode>false</repeatValuesZipcode>
+          <USZipCodesDataGeneratorFormatZipcode>All</USZipCodesDataGeneratorFormatZipcode>
+          <escapeSpaceSequence>4b115cd7d2e1428b8662ab2cd9f62a10</escapeSpaceSequence>
+        </con:configuration>
+      </con:dataSource>
+      <con:shared>true</con:shared>
+      <con:restartShared>true</con:restartShared>
+      <con:property>CountryValue</con:property>
+      <con:property>Full Name</con:property>
+      <con:property>PhoneNumber</con:property>
+      <con:property>Address</con:property>
+      <con:property>apt</con:property>
+      <con:property>City</con:property>
+      <con:property>State</con:property>
+      <con:property>Zipcode</con:property>
+      <con:restartOnRun>true</con:restartOnRun>
+      <con:stopDatasourceExhausted>false</con:stopDatasourceExhausted>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="calltestcase" name="GenerateToken" id="3831bb3a-ff43-438b-86d7-fe62ff79a1ff">
+    <con:settings/>
+    <con:config xsi:type="con:RunTestCaseStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+      <con:targetTestCase>866955a7-8585-4b50-bfae-15f1b47ef4a0</con:targetTestCase>
+      <con:properties/>
+      <con:returnProperties/>
+      <con:runMode>PARALLELL</con:runMode>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="restrequest" name="REST Request" id="98144afb-0b87-473f-aca7-69371bea6c11">
+    <con:settings/>
+    <con:config service="retail.api" resourcePath="/address" methodName="AddAddress" xsi:type="con:RestRequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+      <con:restRequest name="REST Request" id="47d71bac-5212-4f66-8c53-cdc844cd806e" mediaType="application/json" postQueryString="false">
+        <con:settings>
+          <con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;con:entry key="x-access-token" value="${#[LogIn Test Suite#Login Test Positive#REST Request]#Response#$['accessToken']}" xmlns:con="http://eviware.com/soapui/config"/></con:setting>
+        </con:settings>
+        <con:request>{\r
+   "country" : "${Data Source#CountryValue}",\r
+   "fullName" : "${Data Source#Full Name}",\r
+   "phoneNumber" : "${Data Source#PhoneNumber}",\r
+   "street" : "${Data Source#Address}",\r
+   "apartment" : "${Data Source#apt}",\r
+   "city" : "${Data Source#City}",\r
+   "state" : "${Data Source#State}",\r
+   "zipCode" : "${Data Source#Zipcode}"\r
+}</con:request>
+        <con:originalUri>https://tek-retail-api.azurewebsites.net/address</con:originalUri>
+        <con:assertion type="Valid HTTP Status Codes" id="b99041c9-7c3c-43be-8ec2-4e1c007420c6" name="Valid HTTP Status Codes">
+          <con:settings/>
+          <con:configuration>
+            <codes>200</codes>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="Response SLA Assertion" id="19837b0b-4153-4cc6-8172-f8b0fe29cb65" name="Response SLA">
+          <con:configuration>
+            <SLA>500</SLA>
+          </con:configuration>
+        </con:assertion>
+        <con:assertion type="DataAndMetadataAssertion" id="1afb5b14-8214-4f6c-a361-17d6da8b2267" name="Smart Assertion">
+          <con:configuration xsi:type="con:DataAndMetadataAssertion">
+            <con:mode>Received Data</con:mode>
+            <con:elements>
+              <con:path>$['id']</con:path>
+              <con:element>id</con:element>
+              <con:operatorId>9</con:operatorId>
+              <con:enabled>true</con:enabled>
+              <con:expectedValue>6309</con:expectedValue>
+              <con:caseSensitive>true</con:caseSensitive>
+              <con:numberType>true</con:numberType>
+              <con:expectedDataType>2</con:expectedDataType>
+            </con:elements>
+            <con:elements>
+              <con:path>$['country']</con:path>
+              <con:element>country</con:element>
+              <con:operatorId>1</con:operatorId>
+              <con:enabled>true</con:enabled>
+              <con:expectedValue>${Data Source#CountryValue}</con:expectedValue>
+              <con:caseSensitive>true</con:caseSensitive>
+              <con:numberType>false</con:numberType>
+              <con:expectedDataType>1</con:expectedDataType>
+            </con:elements>
+            <con:elements>
+              <con:path>$['fullName']</con:path>
+              <con:element>fullName</con:element>
+              <con:operatorId>1</con:operatorId>
+              <con:enabled>true</con:enabled>
+              <con:expectedValue>${Data Source#Full Name}</con:expectedValue>
+              <con:caseSensitive>true</con:caseSensitive>
+              <con:numberType>false</con:numberType>
+              <con:expectedDataType>1</con:expectedDataType>
+            </con:elements>
+            <con:elements>
+              <con:path>$['phoneNumber']</con:path>
+              <con:element>phoneNumber</con:element>
+              <con:operatorId>1</con:operatorId>
+              <con:enabled>true</con:enabled>
+              <con:expectedValue>${Data Source#PhoneNumber}</con:expectedValue>
+              <con:caseSensitive>true</con:caseSensitive>
+              <con:numberType>false</con:numberType>
+              <con:expectedDataType>1</con:expectedDataType>
+            </con:elements>
+            <con:elements>
+              <con:path>$['street']</con:path>
+              <con:element>street</con:element>
+              <con:operatorId>1</con:operatorId>
+              <con:enabled>true</con:enabled>
+              <con:expectedValue>${Data Source#Address}</con:expectedValue>
+              <con:caseSensitive>true</con:caseSensitive>
+              <con:numberType>false</con:numberType>
+              <con:expectedDataType>1</con:expectedDataType>
+            </con:elements>
+            <con:elements>
+              <con:path>$['apartment']</con:path>
+              <con:element>apartment</con:element>
+              <con:operatorId>1</con:operatorId>
+              <con:enabled>true</con:enabled>
+              <con:expectedValue>${Data Source#apt}</con:expectedValue>
+              <con:caseSensitive>true</con:caseSensitive>
+              <con:numberType>false</con:numberType>
+              <con:expectedDataType>1</con:expectedDataType>
+            </con:elements>
+            <con:elements>
+              <con:path>$['city']</con:path>
+              <con:element>city</con:element>
+              <con:operatorId>1</con:operatorId>
+              <con:enabled>true</con:enabled>
+              <con:expectedValue>${Data Source#City}</con:expectedValue>
+              <con:caseSensitive>true</con:caseSensitive>
+              <con:numberType>false</con:numberType>
+              <con:expectedDataType>1</con:expectedDataType>
+            </con:elements>
+            <con:elements>
+              <con:path>$['state']</con:path>
+              <con:element>state</con:element>
+              <con:operatorId>1</con:operatorId>
+              <con:enabled>true</con:enabled>
+              <con:expectedValue>${Data Source#State}</con:expectedValue>
+              <con:caseSensitive>true</con:caseSensitive>
+              <con:numberType>false</con:numberType>
+              <con:expectedDataType>1</con:expectedDataType>
+            </con:elements>
+            <con:elements>
+              <con:path>$['zipCode']</con:path>
+              <con:element>zipCode</con:element>
+              <con:operatorId>1</con:operatorId>
+              <con:enabled>true</con:enabled>
+              <con:expectedValue>${Data Source#Zipcode}</con:expectedValue>
+              <con:caseSensitive>true</con:caseSensitive>
+              <con:numberType>false</con:numberType>
+              <con:expectedDataType>1</con:expectedDataType>
+            </con:elements>
+            <con:elements>
+              <con:path>$['userId']</con:path>
+              <con:element>userId</con:element>
+              <con:operatorId>9</con:operatorId>
+              <con:enabled>true</con:enabled>
+              <con:expectedValue>812</con:expectedValue>
+              <con:caseSensitive>true</con:caseSensitive>
+              <con:numberType>true</con:numberType>
+              <con:expectedDataType>2</con:expectedDataType>
+            </con:elements>
+            <con:elements>
+              <con:path>$['updatedAt']</con:path>
+              <con:element>updatedAt</con:element>
+              <con:operatorId>9</con:operatorId>
+              <con:enabled>true</con:enabled>
+              <con:expectedValue>2023-04-07T20:25:02.555Z</con:expectedValue>
+              <con:caseSensitive>true</con:caseSensitive>
+              <con:numberType>false</con:numberType>
+              <con:expectedDataType>1</con:expectedDataType>
+            </con:elements>
+            <con:elements>
+              <con:path>$['createdAt']</con:path>
+              <con:element>createdAt</con:element>
+              <con:operatorId>9</con:operatorId>
+              <con:enabled>true</con:enabled>
+              <con:expectedValue>2023-04-07T20:25:02.555Z</con:expectedValue>
+              <con:caseSensitive>true</con:caseSensitive>
+              <con:numberType>false</con:numberType>
+              <con:expectedDataType>1</con:expectedDataType>
+            </con:elements>
+            <con:originalMessage>{"id":6309,"country":"United States","fullName":"Sage Castaneda","phoneNumber":"187-967-3380","street":"48463 EastSingapore Ct.","apartment":"300","city":"Albany","state":"Arizona","zipCode":"06223","userId":812,"updatedAt":"2023-04-07T20:25:02.555Z","createdAt":"2023-04-07T20:25:02.555Z"}</con:originalMessage>
+          </con:configuration>
+        </con:assertion>
+        <con:credentials>
+          <con:selectedAuthProfile>No Authorization</con:selectedAuthProfile>
+          <con:authType>No Authorization</con:authType>
+        </con:credentials>
+        <con:jmsConfig JMSDeliveryMode="PERSISTENT"/>
+        <con:parameters/>
+      </con:restRequest>
+    </con:config>
+  </con:testStep>
+  <con:testStep type="jdbc" name="JDBC Request" id="40717e53-4162-440a-9997-559cb837f72e">
+    <con:settings>
+      <con:setting id="prettyPrintResponse">true</con:setting>
+    </con:settings>
+    <con:config xsi:type="con:JdbcRequestTestStep" convertColumnNamesToUpperCase="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+      <con:dbConnectionName>Retail Database</con:dbConnectionName>
+      <con:driver>com.mysql.jdbc.Driver</con:driver>
+      <con:connectionString>jdbc:mysql://tek-database-server.mysql.database.azure.com:3306/retail?user=tek_student_user&amp;password=PASS_VALUE</con:connectionString>
+      <con:password>MAY_2022</con:password>
+      <con:connectionProperties/>
+      <con:query>select * from addresses
+where userId = ${REST Request#Response#$['userId']} 
+and id = ${REST Request#Response#$['id']} 
+and isDeleted = 0;</con:query>
+      <con:assertion type="XPath Match" id="527361ac-aad3-46f1-9271-84ac3dcc7b1a" name="Check count of [@rowNumber]">
+        <con:configuration>
+          <path>count( //Results/ResultSet/Row/@rowNumber)</path>
+          <content>1</content>
+          <allowWildcards>false</allowWildcards>
+          <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+          <ignoreComments>false</ignoreComments>
+        </con:configuration>
+      </con:assertion>
+      <con:assertion type="XPath Match" id="5769c9c2-35d1-4e3e-8347-8fe46585f9b4" name="Match content of [ADDRESSES.ID]">
+        <con:configuration>
+          <path>//Results[1]/ResultSet[1]/Row[1]/ADDRESSES.ID[1]/text()</path>
+          <content>${REST Request#Response#$['id']}</content>
+          <allowWildcards>false</allowWildcards>
+          <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+          <ignoreComments>false</ignoreComments>
+        </con:configuration>
+      </con:assertion>
+      <con:assertion type="XPath Match" id="57547983-ee7a-46c3-9447-dd865d5057a0" name="Match content of [ADDRESSES.COUNTRY]">
+        <con:configuration>
+          <path>//Results[1]/ResultSet[1]/Row[1]/ADDRESSES.COUNTRY[1]/text()</path>
+          <content>${REST Request#Response#$['country']}</content>
+          <allowWildcards>false</allowWildcards>
+          <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+          <ignoreComments>false</ignoreComments>
+        </con:configuration>
+      </con:assertion>
+      <con:assertion type="XPath Match" id="a8994a09-f768-40ff-8d5e-92be93f9f95d" name="Match content of [ADDRESSES.COUNTRY]">
+        <con:configuration>
+          <path>//Results[1]/ResultSet[1]/Row[1]/ADDRESSES.COUNTRY[1]/text()</path>
+          <content>${Data Source#CountryValue}</content>
+          <allowWildcards>false</allowWildcards>
+          <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+          <ignoreComments>false</ignoreComments>
+        </con:configuration>
+      </con:assertion>
+      <con:assertion type="XPath Match" id="1a4e3fbc-d1dc-4292-b46e-562f2233551d" name="Match content of [ADDRESSES.FULLNAME]">
+        <con:configuration>
+          <path>//Results[1]/ResultSet[1]/Row[1]/ADDRESSES.FULLNAME[1]/text()</path>
+          <content>${REST Request#Response#$['fullName']}</content>
+          <allowWildcards>false</allowWildcards>
+          <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+          <ignoreComments>false</ignoreComments>
+        </con:configuration>
+      </con:assertion>
+      <con:assertion type="XPath Match" id="60a99301-69d4-4531-b1d7-e42100b76ac7" name="Match content of [ADDRESSES.FULLNAME]">
+        <con:configuration>
+          <path>//Results[1]/ResultSet[1]/Row[1]/ADDRESSES.FULLNAME[1]/text()</path>
+          <content>${Data Source#Full Name}</content>
+          <allowWildcards>false</allowWildcards>
+          <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+          <ignoreComments>false</ignoreComments>
+        </con:configuration>
+      </con:assertion>
+      <con:assertion type="XPath Match" id="ba36eb91-8d54-40a1-8931-c325b9407d6e" name="Match content of [ADDRESSES.PHONENUMBER]">
+        <con:configuration>
+          <path>//Results[1]/ResultSet[1]/Row[1]/ADDRESSES.PHONENUMBER[1]/text()</path>
+          <content>${Data Source#PhoneNumber}</content>
+          <allowWildcards>false</allowWildcards>
+          <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+          <ignoreComments>false</ignoreComments>
+        </con:configuration>
+      </con:assertion>
+      <con:assertion type="XPath Match" id="04fecf34-af3b-4b8e-b331-775379c50aff" name="Match content of [ADDRESSES.PHONENUMBER]">
+        <con:configuration>
+          <path>//Results[1]/ResultSet[1]/Row[1]/ADDRESSES.PHONENUMBER[1]/text()</path>
+          <content>${REST Request#Response#$['phoneNumber']}</content>
+          <allowWildcards>false</allowWildcards>
+          <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+          <ignoreComments>false</ignoreComments>
+        </con:configuration>
+      </con:assertion>
+      <con:assertion type="XPath Match" id="ee982843-a764-476a-bbcd-52846bb42ba5" name="Match content of [ADDRESSES.STREET]">
+        <con:configuration>
+          <path>//Results[1]/ResultSet[1]/Row[1]/ADDRESSES.STREET[1]/text()</path>
+          <content>${REST Request#Response#$['street']}</content>
+          <allowWildcards>false</allowWildcards>
+          <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+          <ignoreComments>false</ignoreComments>
+        </con:configuration>
+      </con:assertion>
+      <con:assertion type="XPath Match" id="8b83e083-63fd-4053-85d7-a3c4b5b47ee8" name="Match content of [ADDRESSES.STREET]">
+        <con:configuration>
+          <path>//Results[1]/ResultSet[1]/Row[1]/ADDRESSES.STREET[1]/text()</path>
+          <content>${Data Source#Address}</content>
+          <allowWildcards>false</allowWildcards>
+          <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+          <ignoreComments>false</ignoreComments>
+        </con:configuration>
+      </con:assertion>
+      <con:assertion type="XPath Match" id="870206b8-f0b7-45a8-b242-e09e6494a308" name="Match content of [ADDRESSES.CITY]">
+        <con:configuration>
+          <path>//Results[1]/ResultSet[1]/Row[1]/ADDRESSES.CITY[1]/text()</path>
+          <content>${Data Source#City}</content>
+          <allowWildcards>false</allowWildcards>
+          <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+          <ignoreComments>false</ignoreComments>
+        </con:configuration>
+      </con:assertion>
+      <con:assertion type="XPath Match" id="fa60f73c-55c2-4348-a9d7-4907ef7821c9" name="Match content of [ADDRESSES.CITY]">
+        <con:configuration>
+          <path>//Results[1]/ResultSet[1]/Row[1]/ADDRESSES.CITY[1]/text()</path>
+          <content>${REST Request#Response#$['city']}</content>
+          <allowWildcards>false</allowWildcards>
+          <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+          <ignoreComments>false</ignoreComments>
+        </con:configuration>
+      </con:assertion>
+      <con:assertion type="XPath Match" id="60e28a90-6958-40ad-9131-b810429c940a" name="Match content of [ADDRESSES.STATE]">
+        <con:configuration>
+          <path>//Results[1]/ResultSet[1]/Row[1]/ADDRESSES.STATE[1]/text()</path>
+          <content>${REST Request#Response#$['state']}</content>
+          <allowWildcards>false</allowWildcards>
+          <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+          <ignoreComments>false</ignoreComments>
+        </con:configuration>
+      </con:assertion>
+      <con:assertion type="XPath Match" id="cc587edd-9112-4384-9f76-5dd2fa42d931" name="Match content of [ADDRESSES.STATE]">
+        <con:configuration>
+          <path>//Results[1]/ResultSet[1]/Row[1]/ADDRESSES.STATE[1]/text()</path>
+          <content>${Data Source#State}</content>
+          <allowWildcards>false</allowWildcards>
+          <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+          <ignoreComments>false</ignoreComments>
+        </con:configuration>
+      </con:assertion>
+      <con:assertion type="XPath Match" id="94317125-f4df-41d8-9948-9ffe7633c192" name="Check for existence of [ADDRESSES.CREATEDAT]">
+        <con:configuration>
+          <path>exists( //Results/ResultSet/Row/ADDRESSES.CREATEDAT)</path>
+          <content>true</content>
+          <allowWildcards>false</allowWildcards>
+          <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+          <ignoreComments>false</ignoreComments>
+        </con:configuration>
+      </con:assertion>
+      <con:assertion type="XPath Match" id="080eb0ba-797d-4a95-87cc-f25bb5af4815" name="Check for existence of [ADDRESSES.UPDATEDAT]">
+        <con:configuration>
+          <path>exists( //Results/ResultSet/Row/ADDRESSES.UPDATEDAT)</path>
+          <content>true</content>
+          <allowWildcards>false</allowWildcards>
+          <ignoreNamspaceDifferences>false</ignoreNamspaceDifferences>
+          <ignoreComments>false</ignoreComments>
+        </con:configuration>
+      </con:assertion>
+      <con:properties/>
+    </con:config>
+  </con:testStep>
+  <con:properties/>
+  <con:reportParameters/>
+</con:testCase>
